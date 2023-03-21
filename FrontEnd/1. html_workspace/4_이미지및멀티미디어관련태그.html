@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>이미지 및 멀티미디어 관련 태그</title>
+
+    <style>
+        #img1.hover{
+            transition : transform 550ms ease-in-out;
+            transform : scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>이미지 관련 태그</h1>
+
+    <!--
+        <img src="삽입하려고하는 이미지의 경로(필수)" alt="이미지 설명 문구"
+        width="이미지의 가로크기(px/%)" height="이미지의 세로크기(px/%)">
+    -->
+
+    <h3>src속성, alt속성</h3>
+    <img src="https://s.pstatic.net/shopping.phinf/20230308_0/8049b019-c1ec-4c25-a432-1c067d8fa3ae.jpg"
+    width="500" height="500" id="img1" />   
+
+    <img src="image/bono.jpg" alt="이 사진은 보노보노입니다.">
+
+    <p>
+        *alt <br>
+        - 사진의 경로가 존재하지 않는 경로거나 이미지를 제대로 표현할 수 없는 경우 대체 텍스트의 용도 <br>
+        - 시각장애인들을 위한 스크린리더(화면낭독기)에서 이미지를 읽어주는 설명문구<br>
+
+        웹 접근성 => 사용자의 신체적 특징이나, 지역, 나이, 지식수준 등을 고려하여
+        가능한 많은 사용자가 불편함없이 이용할 수 있도록 서비스를 만들어서 제공하는 것
+    </p>
+
+    <hr />
+
+    <h3>* width와 height 속성</h3>
+
+    <p>
+        이미지의 가로, 세로길이 조정가능 <br>
+        고정길이(px), 가변길이(%)로 지정이 가능하다.
+    </p>
+
+    <h4>고정길이단위(px) == 기본값 : 화면 사이즈가 조정되더라도 이미지의 크기가 변동 X</h4>
+
+    <img src="image/flower.jpg" alt="꽃이야" width="100" height="150" />
+    <img src="image/flower2.jpg" alt="꽃2이야" width="150" height="150" />
+    <img src="image/flower3.jpg" alt="꽃3이야" width="200" height="150" />
+    <img src="image/flower4.jpg" alt="꽃4이야" width="125" height="150" />
+    <img src="image/flower5.jpg" alt="꽃5이야" width="175" height="150" />
+
+    <br>
+
+    <h4>가변길이단위(%) : 화면사이즈 혹은 부모요소의 사이즈에 따라 이미지의 크기도 같이 변동</h4>
+
+    <img src="image/flower.jpg" alt="꽃1" width="15%" height="150" />
+    <img src="image/flower2.jpg" alt="꽃2" width="15%" height="150" />
+    <img src="image/flower3.jpg" alt="꽃3" width="15%" height="150" />
+    <img src="image/flower4.jpg" alt="꽃4" width="15%" height="150" />
+    <img src="image/flower5.jpg" alt="꽃5" width="15%" height="150" />
+
+    <br><br><br>
+
+    <hr>
+
+    <br>
+    <h1>미디어 관련 태그</h1>
+
+    <h3>오디오 관련 태그</h3>
+    <!--
+        <audio src="" controls autoplay loop></audio>
+        controls : 플레이어를 보일것인지 숨길것인지
+        autoplay : 자동 재생 여부 지정(IE O, Chrome X)
+        loop : 반복 재생 지정
+    -->
+    
+    <audio src = "audio/major.mp3" controls loop></audio>
+
+    <h3>비디오관련 태그</h3>
+
+    <!--
+        <video src="" controls autoplay loop width="" height= "" poster=""></video>
+
+        src : 비디오 파일
+
+    -->
+
+    <video src = "video/sample.mp4" controls width="400" height="200" poster="image/bono.jpg"></video>
+
+
+</body>
+</html>

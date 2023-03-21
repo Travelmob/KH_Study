@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>실습문제~!</title>
+</head>
+<body>
+    <form action="text.do">
+        <fieldset>
+            <legend>회원가입 양식</legend>
+            * 아이디 <br>
+            <input type="text" name="ID" placeholder="영문 소문자, 숫자, 특수기호(_) 5~20"  required>
+            <button>아이디 중복확인</button> <br><br>
+            * 비밀번호 <br>
+            <input type="password" name=Password placeholder="영문 소문자, 숫자, 특수기호 8~15"  required> <br><br>
+            * 비밀번호 재확인 <br>
+            <input type="password" name=PasswordCheck placeholder="영문 소문자, 숫자, 특수기호 8~15" required> <br><br>
+            * 이름 <br>
+            <input type="text" name=Name> <br><br>
+            * 주민등록번호 <br>
+            <input type="number" name="PersonIDFront"> - <input type="number" name="PersonIDBack"> <br><br>
+            * 성별 <br>
+            <input type="radio" name="Sex" id="noChoice" value="선택안함" checked><label for="noChoice">선택안함</label>
+            <input type="radio" name="Sex" id="Men" value="남자"><label for="Men">남자</label>
+            <input type="radio" name="Sex" id="Woman" value="여자"><label for="Woman">여자</label>
+            <br><br>
+            * 생년월일 <br>
+            <input type="date" name="Date"> <br><br>
+            * 주소 <br>
+            <input type="text" name="Address"> <br><br>
+            * 우편번호 <br>
+            <input type="number" name="Post">
+            <button>우편번호찾기</button>
+            <input type="checkbox" name="Postreicive" id="Postreicive"><label for="Postreicive">우편수신동의</label> <br><br>
+            * 이메일 <br>
+            <input type="email" name="Email">
+            <input type="checkbox" name="Emailreicive" id="Emailreicive"><label for="Emailreicive">메일수신동의</label> <br><br>
+            * 휴대폰 번호 <br>
+            <select name="PhoneFirst">
+                <option>010</option>
+            </select>
+            -
+            <input type="number" name="PhoneMiddle">
+            -
+            <input type="number" name="PhoneLast">
+            <input type="checkbox" name="Textreicive" id="Textreicive"><label for="Textreicive">문자수신동의</label> <br><br>
+            
+
+            <input type="reset">
+            <button>가입하기</button>
+
+        </fieldset>
+    </form>
+        
+</body>
+</html>
