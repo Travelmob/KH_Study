@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>목록관련스타일</title>
+
+    <style>
+        #ul1{
+            list-style: none;
+        }
+
+        #ol1{
+            list-style: decimal;
+        }
+
+        #ul2{
+            list-style-image : url("image/iconsample.png");
+            list-style-position : inside;
+        }
+    </style>
+</head>
+<body>
+    <h1>목록 관련 스타일(list~)</h1>
+
+    <h3>list-style-type : 불릿 기호를 변경할 때 사용</h3>
+
+    <pre>
+        [ 표현법 ]
+        * 순서 없는 목록(ul)
+        선택자{
+            list-style-type : disc / circle / square / none;
+        }
+
+        * 순서 있는 목록(ol)
+        선택자{
+            list-style-type : decimal (십진수)
+            list-style-type : lower-alpha / upper-alpha => 알파벳
+            list-style-type : lower-roman / upper-roman => 로마숫자
+        }
+    </pre>
+
+    <h4>순서 없는 목록</h4>
+    <ul id="ul1">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ul>
+
+    <h4>순서 있는 목록</h4>
+    <ol id="ol1">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+
+    <ul id="ul2">
+        <li>강남본원 1관</li>
+        <li>강남본원 2관</li>
+        <li>강남본원 3관</li>
+        <li>당산지원</li>
+        <li>종로지원</li>
+    </ul>
+    
+</body>
+</html>

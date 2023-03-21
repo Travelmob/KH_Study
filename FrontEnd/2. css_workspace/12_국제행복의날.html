@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>국제행복의날</title>
+
+    <style>
+        .logo{
+            font-size:35px;
+            font-weight:900;
+            color:#5fc14c;
+        }
+
+        #searchText{
+            width:300px;
+            height:30px;
+            border:2px solid #5fc14c;
+        }
+
+        #searchBtn{
+            width:60px;
+            height:35px;
+            border:3px solid #5fc14c;
+            background-color:#5fc14c;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <label class="logo">NEVER</label>
+    </div>
+    <div id="middle">
+        <form action="search.do" mehod="get" id="searchForm">
+            <table>
+                <tr>
+                    <td><input type="text" name="keyword" id="searchText"></td>
+                    <td><button type="submit" id="searchBtn">검색</button></td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            border-width:3px;
+            margin:15px;
+        }
+
+        #test1{
+            border-style : dotted;
+            border-width : 10px;
+            border-color : tomato;
+            border-top-style : double;
+            border-right-color : violet;
+            border-bottom-width : 1px;
+        }
+
+        #test2{
+            /* 테두리의 두께 스타일 색상을 한번에 지정 */
+            border : 10px dotted yellowgreen;
+            border-left-style : solid;
+            border-top : 5px dashed orangered;
+            background : red;
+        }
+
+        #test3{
+            border-style : dashed double solid dotted;
+            /* 12시 방향부터 시계방향으로 적용 */
+        }
+
+        #test4{
+            border-style:groove; /* 패인액자 느낌 */
+            border-width:10px;
+            border-top-left-radius:50px;
+        }
+
+        #test5{
+            border-style:ridge; /* 튀어나온 액자 */
+            border-width:10px;
+            border-bottom-right-radius:50px;
+        }
+
+        #test6{
+            border-style:inset;
+            border-width:10px;
+        }
+
+        #test7{
+            border-style:outset;
+            border-width:10px;
+        }
+
+        #test8{
+            border-radius:80px;
+            border:solid;
+        }
+
+        #test9{
+            border : solid;
+            box-shadow : 5px 5px 10px 5px grey;
+        }
+
+        #test10{
+            border : 2px solid orangered;
+        }
+
+        #btn{
+            border : 2px dashed orangered;
+            padding : 30px;
+            color : white;
+            background-color:rgb(173, 63, 23);
+            border-radius:10px;
+        }
+
+        #btn:hover{
+            cursor:pointer;
+            color:plum;
+            background-color:mediumorchid
+        }
+
+        #ts{
+            font-size : 50px;
+            font-weight : 800;
+            color:white;
+            text-shadow : 0px 0px 4px gray,
+                          0px -5px 4px yellow,
+                          0px -10px 8px orange,
+                          0px -15px 14px orangered,
+                          0px -22px 19px red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>테두리 관련 스타일(border!)</h1>
+
+    <pre>
+        [ 표현법 ]
+        선택자{
+
+            * 테두리 스타일
+            border-위치-style : none / dotted / dashed / solid* /double / groove / ridge / inset / outset
+        
+            * 테두리 두께
+            border-위치-color : 테두리색상;
+            
+            * 테두리 모서리를 동그랗게
+            border-위치-radius : 숫자 px; => 위치 생략가능
+
+            * 박스에 그림자
+            box-shadow : 가로(x) 세로(y) 흐림정도 번짐정도 색상;
+        }
+    </pre>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <div id="test4"></div>
+    <div id="test5"></div>
+    <div id="test6"></div>
+    <div id="test7"></div>
+    <div id="test8"></div>
+    <div id="test9"></div>
+    <div id="test10"></div>
+
+    <br><br><br>
+
+    <button id="btn">수업종료버튼</button>
+
+    <br><br><br><br>
+
+    <div id="ts">HTML</div>
+    
+</body>
+</html>

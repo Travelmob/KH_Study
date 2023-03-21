@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구조를 잡아보자!</title>
+
+    <style>
+        div{
+            border : 1px solid red;
+            box-sizing : border-box;
+        }
+        .wrap{
+            width: 1000px;
+            height : 800px;
+            margin : auto;
+        }
+
+        /* 구획 나누기 */
+        .wrap>div{
+            width : 100%;
+        }
+
+        #header, #footer{
+            height : 20%;
+        }
+
+        #content {
+            height : 60%;
+        }
+
+        /* 세부설정(세로길이) */
+        #header>div, #content>div {
+            height : 100%;
+            float : left;
+        }
+
+        /* 세부설정(가로길이) */
+        #header_1{
+            width : 30%;
+        }
+        #header_2{
+            width : 70%;
+        }
+
+        #content_1{
+            width : 15%;
+        }
+        #content_2{
+            width : 65%;
+        }
+        #content_3{
+            width : 20%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1">세계평화의날이 어쩌고</div>
+            <div id="header_2"></div>
+        </div>
+        <div id="content">
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3"></div>
+        </div>
+        <div id="footer"></div>
+
+
+    </div>
+    
+</body>
+</html>

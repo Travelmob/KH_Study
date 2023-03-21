@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>기타선택자</title>
+    <!--외부스타일 방식-->
+    <link rel="stylesheet" href="css/02_stylesheet.css">
+</head>
+<>
+    <h1>기타 선택자</h1>
+
+    <h2>1. 속성 선택자</h2>
+
+    <p>
+        스타일을 부여하고자 하는 요소 내에 작성되어있는 속성을 이용해서 선택하는 방법 <br>
+        기본선택자 뒤에 []를 이용해서 속성과 속성값을 명시해서 선택하는 방법
+    </p>
+    
+    #div$.div-class[name="name$"]{div$}*4
+    
+    <div class="div-class" name="name1">div1</div>
+    <div class="div-class" name="name2">div2</div>
+    <div class="div-class" name="name3 name1">div3</div>
+    <div class="class-div" name="name4">div4</div>
+
+    <pre>
+        [ 표현법 ]
+        선택자[속성=속성값]{스타일속성 : 값;} => "일치"
+        선택자[속성~=속성값]{스타일속성 : 값;} => "포함"(단어기준)
+        선택자[속성|=속성값]{스타일속성 : 값;} => "시작"(단어기준, -로 구분)
+        선택자[속성^=속성값]{스타일속성 : 값;} => "시작"(단어기준)
+        선택자[속성$=속성값]{스타일속성 : 값;} => "끝"
+        선택자[속성*=속성값]{스타일속성 : 값;} => "포함"(일반문자열)
+    </pre>
+
+    <hr>
+
+    <h2>2. 자식선택자 후손선택자</h2>
+
+    <p>
+        자식 : 바로 하위 요소들
+        후손 : 하위 요소들 전부
+    </p>
+
+    <pre>
+        [ 표현법 ]
+        - 자식선택자(>)
+        a > b {
+            스타일속성 : 값;
+            ...
+        }
+        
+        - 후손선택자( )
+        a b {
+            스타일속성 : 값;
+            ...
+        }
+    </pre>
+
+    <div id="test1">
+        <h4>div의 자식이면서 후손입니다.</h4>
+        <h4>div의 자식이면서 후손입니다.</h4>
+        <ul>div의 자식이면서 후손입니다.
+            <li>ul의 자식이면서 div와 ul의 후손입니다.</li>
+            <li>ul의 자식이면서 div와 ul의 후손입니다.</li>
+        </ul>
+    </div>
+
+    <hr><hr>
+
+    <h2>3. 동위(같은레벨) 선택자</h2>
+
+    <p>
+        동위관계(같은 레벨)에 있는 뒤에 위치한 특정 요소를 선택할 때 사용
+    </p>
+
+    <pre>
+        [ 표현법 ]
+        - a요소 뒤에 있는 b요소 단 하나만을 선택자
+        a + b {
+            스타일 속성 : 값;
+            ...
+        }
+
+        - a요소 뒤에 있는 b요소들을 모두 다 선택자
+        a ~ b {
+            스타일 속성 : 값;
+            ...
+        }
+    </pre>
+
+    <div id="test2">div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <ul>ul요소</ul>
+    <div>빠잉</div>
+
+    <hr>
+
+    <h4>4. 반응 선택자</h4>
+
+    <p>
+        사용자의 움직임에 따라 선택이되거나 안되는 선택자
+    </p>
+
+    <pre>
+        [ 표현법 ]
+        - 해당 요소를 클릭 했을 경우 스타일부여하고자
+        선택자:active{
+            스타일 속성 : 값;
+            ...
+        }
+
+        - 해당 요소에 마우스커서가 올라가는 순간 스타일부여하고자
+        선택자:hover{
+            스타일 속성 : 값;
+            ...
+        }
+    </pre>
+
+    <div id="active-test" class="area">active 테스트</div>
+    <br>
+    <div id="hover-test" class="area">hover 테스트</div>
+    <br>
+
+    <hr>
+
+    <h2>5. 상태 선택자</h2>
+
+    <p>
+        요소의 상태에 따라서 선택되는 선택자 <br><br>
+
+        선택할 수 있는 상태의 종류<br>
+        1. checked상태 <br>
+        2. focus상태 <br>
+        3. enabled상태 <br>
+        4. disabled상태 <br>
+    </p>
+
+    <pre>
+        [ 표현법 ]
+        1) checked 상태의요소들
+        선택자:checked{
+            스타일속성 : 값;
+            ...
+        }
+    </pre>
+
+    <input type="checkbox" id="strawberry"><label for = "strawberry">딸기</label>
+    <input type="checkbox" id="mango"><label for = "mango">망고</label>
+    <input type="checkbox" id="shinemuscat"><label for = "shinemuscat">샤인머스켓</label>
+
+    </div>
+
+    <br>
+
+    <pre>
+        2) focus가 맞춰진 input 요소 선택
+        선택자:focus{
+            스타일 속성 : 값;
+            ...
+        }
+    </pre>
+
+    아이디 : <input type="text" name="userId" placeholder="아이디쓰세요">
+    <br>
+    비밀번호 : <input type="password" name="userPwd">
+    <br>
+
+    <pre>
+        3) enabled : 활성화된 상태
+        선택자:enabled{
+            스타일 속성 : 값;
+            ...
+        }
+
+        4) disabled : 비활성화된 상태
+        선택자:disabled{
+            스타일 속성 : 값;
+            ...
+        }
+    </pre>
+    
+    <button>클릭가능</button>
+    <button disabled>클릭불가능</button>
+    
+
+
+    
+</body>
+</html>

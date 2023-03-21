@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>화면잡기</title>
+
+    <style>
+        div{
+            border: 1px solid red;
+            box-sizing:border-box;
+        }
+        .wrap{
+            width : 1000px;
+            height : 800px;
+            margin : auto;
+        }
+
+        .wrap>div{ height : 100%; }
+
+        #header, #foot{ height : 20%; }
+        #fbody{ height : 5%; }
+        #body{ height : 55%; }
+
+        /* 세부 div들 속성 */
+        /* 공통 속성 */
+        
+        #header > div, #body > div {
+            height : 100%;
+            float : left;
+        }
+    
+        #header1{ width : 20%; }
+        #header2{ width : 65%; }
+        #header3{ width : 15%; }
+
+        #body1{ width : 15%; }
+        #body2{ width : 60%; }
+        #body3{ width : 25%; }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div id="header">
+            <div class="header" id="header1"></div>
+            <div class="header" id="header2"></div>
+            <div class="header" id="header3"></div>
+        </div>
+        <div id="fbody">
+        </div>
+        <div id="body">
+            <div class="body" id="body1"></div>
+            <div class="body" id="body2"></div>
+            <div class="body" id="body3"></div>
+        </div>
+        <div id="foot">
+        </div>
+    </div>
+
+    
+</body>
+</html>
