@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>요소가져오기(접근하기)</title>
+    <style>
+        .area{
+            border : 1px solid black;
+            width : 300px;
+            height : 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1> HTML요소 접근하기(해당 요소객체 가져오기) </h1>
+    
+    <h3> 1) 아이디로 접근하기 </h3>
+    <div id="area1" class="area"></div>
+    <button onclick="accessId();">아이디로 접근</button>
+
+    <script>
+        function accessId(){
+            // 아이디로 요소에 접근할 때
+            // var 변수 = document.getElementById('접근할 요소의 아이디 속성 값');
+            // 요소 객체라고 부른다.
+
+            var area1 = document.getElementById('area1');
+
+            console.log(area1);
+            console.dir(area1);
+
+            // 선택된 요소의 속성들에 접근해서 값을 get하거나 set할 수 있음
+            // 속성에 접근하려고 하면??? => 선택된요소객체.속성명
+
+            //console.log(area1.id);
+            area1.innerHTML = '아이디로 접근성공 ! <br>';
+
+            console.log(area1.innerHTML);
+
+            area1.innerHTML += '<mark>안녕하세요</mark>';
+
+            // 선택된 요소에 스타일 변경
+            area1.style = "background-color : pink; color : blue; width : 400px; height : 300px;";
+            area1.style.color = 'skyblue';
+            area1.style.width = '100px';
+
+            // 개발자 도구로 확인 시 인라인방식으로 스타일이 부여된 것을 확인할 수 있음
+
+        }
+    </script>
+
+    <br><br><br><br><br>
+
+    <div id="area2" class="area" style="background:red"></div>
+    <button onclick="color();">실습 시간</button>
+
+    <!-- 일곱 빛깔 색깔돌리기 -->
+    <script>
+        function color(){
+            var area2 = document.getElementById('area2');
+
+            if(area2.style.backgroundColor == 'red'){
+                area2.style.backgroundColor = 'orange';
+            } else if (area2.style.backgroundColor == 'orange'){
+                area2.style.backgroundColor = 'yellow';
+            } else if (area2.style.backgroundColor == 'yellow'){
+                area2.style = "background-color : green";
+            } else if (area2.style.backgroundColor == 'green'){
+                area2.style = "background-color : blue";
+            } else if (area2.style.backgroundColor == 'blue'){
+                area2.style = "background-color : pink";
+            } else if (area2.style.backgroundColor == 'pink'){
+                area2.style = "background-color : purple";
+            } else if(area2.style.backgroundColor == 'purple'){
+                area2.style = "background-color : red";
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h3>2)태그명으로 접근하기</h3>
+
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+
+    <button onclick="accessTagName();">태그명으로 접근</button>
+
+    <script>
+        function accessTagName(){
+
+            // 태그이름을 통해서 요소에 접근
+            // document.getElementsByTagName('접근하고자하는 태그명');
+            // => 선택된 여러개의 요소객체들이 배열에 담겨서 반환
+            // 자바스크립트에서 배열은 []로 표현
+
+            var array = document.getElementsByTagName('li'); // [li요소객체1, li요소객체2]
+
+            console.log(array);
+            console.log('배열의 크기 : ' + array.length)
+
+            /*
+            array[0].style.backgroundColor = 'rgb(100, 130, 160)';
+            array[1].style.backgroundColor = 'rgb(100, 130, 180)';
+            array[2].style.backgroundColor = 'rgb(100, 130, 200)';
+            array[3].style.backgroundColor = 'rgb(100, 130, 220)';
+            array[4].style.backgroundColor = 'rgb(100, 130, 240)';
+            */
+
+            var blueColor = 50;
+
+            for(var i = 0; i < array.length; i++){
+                array[i].style.backgroundColor = 'rgb(80, 250,' + blueColor + ')';
+                blueColor += 40;
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h3>3) name속성 값으로 접근하기 </h3>
+
+    <form action="test.do">
+        <fieldset>
+            <legend>과일</legend>
+            <input type="checkbox" name="fruit" value="골드키위">골드키위
+            <input type="checkbox" name="fruit" value="레드키위">레드키위
+            <input type="checkbox" name="fruit" value="바나나">바나나
+            <input type="checkbox" name="fruit" value="망고">망고
+            <input type="checkbox" name="fruit" value="딸기">딸기
+            <input type="checkbox" name="fruit" value="자두">자두
+            <input type="checkbox" name="fruit" value="복숭아">복숭아
+        </fieldset>
+    </form>
+
+    <button onclick="accessName();">name속성으로 접근</button>
+
+    <script>
+        function accessName(){
+            // name 속성값으로 요소에 접근할 때
+            //document.getElementsByName('접근하고자하는 name속성 값');
+            // => 선택된 요소 객체들이 배열에 담겨서 반환
+
+            var fruits = document.getElementsByName('fruit'); //[checkbox1, checkbox2, checkbox3...]
+
+            console.log(fruits);
+
+            /*
+            if(fruits[0].checked){
+                alert('1번체크!');
+            }
+            */
+
+            // 체크확인 로직 짜보기
+
+            var fruits2 = document.getElementsByName('fruit');
+
+            var str = '';
+        
+            /*
+            if(fruits[0].checked){
+                str += fruits[0].value + ' ';
+            }
+            if(fruits[1].checked){
+                str += fruits[1].value + ' ';
+            }
+            if(fruits[2].checked){
+                str += fruits[2].value + ' ';
+            }
+            if(fruits[3].checked){
+                str += fruits[3].value + ' ';
+            }
+            if(fruits[4].checked){
+                str += fruits[4].value + ' ';
+            }
+            if(fruits[5].checked){
+                str += fruits[5].value + ' ';
+            }
+            if(fruits[6].checked){
+                str += fruits[6].value + ' ';
+            }
+            */
+
+            for(var i = 0; i < fruits.length; i++){
+                if(fruits[i].checked){
+                    str += fruits[i].value + ' ';
+                }
+            }
+            
+            window.alert(str);
+
+            // 논리값
+
+            // 자바에서의 논리값의 형태
+            // boolean == true / false
+
+            // 자바스크립트에서는 모든값이 논리값으로 쓰일 수 있음
+            // boolean == true / false
+            // 0, 0.0, '', "", null, undefined, NaN
+
+
+            if([1, 2, 3]){
+                alert('이건 조금 극단적이죠??');
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h4>4) 클래스명으로 접근하기</h4>
+
+    .test+p.test+(ul.test>li*2)+pre.test.test2
+
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test2"></pre>
+
+    <button onclick="accessClass();">class로 접근</button>
+
+    <script>
+        function accessClass(){
+
+            // class속성값으로 요소를 가져올 때
+            // document.getElementByClassName('접근하고자 하는 class속성값');
+            // => 선택된 요소들이 배열에 담겨 반환
+
+            var arr = document.getElementsByClassName('test');
+
+            console.log(arr);
+
+        }
+    </script>
+</body>
+</html>

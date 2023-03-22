@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>입출력해보잫ㅎㅎㅎㅎ</title>
+
+    <style>
+        .area {
+            border: 1px solid black;
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>자바스크립트에서의 입/출력</h1>
+
+    <!--
+        자바스크립트 데이터 입출력 관련 객체들
+        1. window : 자바스크립트 내장객체로 브라우저 창이 하나 열릴때마다 하나씩 만들어지는 객체
+        브라우저 창안에 존재하는 모든 요소들의 최상위 객체 == extends Object
+        (모든 곳에 적용되기 때문에 생략 가능)
+        => window.alert(); => alert();
+        => console.log(); => window.console.log();
+
+        2. document : 웹문서(HTML)마다 하나씩 만들어지는 객체
+                    HTML 문서에 대한 정보들을 가지고 있음
+                    document.getElementById();
+    -->
+
+    <h2>1. 데이터를 출력하는 기본 구문</h2>
+    <p>
+        1) window.alert('알림창에 출력할 문구'); <br>
+        2) window.console.log('콘솔창에 출력할 문구'); <br>
+        3) document.write('문서에 출력할 문구'); <br>
+        4) 선택한요소.innerHTML/innerText = '해당 요소에 출력할 문구'
+    </p>
+
+    <h3> 3) document.write('문서에 출력할 문구');</h3>
+    <button onclick="documentWrite();">문서에 출력!</button>
+
+    <script>
+        function documentWrite() {
+            //document.write('문서에 출력');
+            //document.write('<b>맙소사</b><br><hr>안녕?<br>이런게된다고??');
+            // 화면에 출력할 문자열에 HTML태그가 있을 경우 해석해서 동적인 요소를 만들어줌
+
+            // 테이블 만들기
+            var table = '<table border="1">';
+            table += '<tr>';
+            table += '<td>1</td>';
+            table += '<td>2</td>';
+            table += '</tr>';
+            table += '</table>';
+
+            document.write(table); // 덮어쓰기 개념
+
+            //document.write('<table><tr><td>1</td><td>2</td></tr></table>');
+        }
+
+    </script>
+
+    <h3> 4) 선택한요소.innerHTML/innerText = '해당 요소에 출력할 내용';</h3>
+
+    <div id="area1" class="area">
+        innerHTML과 innerText
+        자바스크립트에서 특정한 요소(Element)안의 값(Content)을 가지고 온다거나 <br>
+        변경하고자 할 때 <b>innerHTML, innerText</b>라는 속성에 접근 <br>
+        => 가지고 올 때 : 변수 = 선택한요소.innerHTML/innerText; <br>
+        => 변경하고자 할 때 : 선택한요소.innerHTML/innerText = '변경할 값';
+    </div>
+    <!-- 클래스 선택자를 이용해서 div요소의 테두리를 검정색 실선 1px / 가로길이 500px 세로길이 200px -->
+
+    <button onclick="elementValue();">확인</button>
+    <button onclick="create();">클릭키</button>
+
+    <script>
+        function elementValue() {
+            // 1. 먼저 해당 요소 객체를 가져와서 변수에 담기!
+            var divEl = document.getElementById('area1');
+
+            console.log(divEl);
+
+            // 선택한 요소의 정보를 알아내고자 한다면 속성에 .을 찍고 접근하면됨!!
+
+            console.log(divEl.id); // id : 해당 요소의 id속성값
+            console.log(divEl.className); // className : 해당 요소의 class속성의 값
+
+            console.log(divEl.innerHTML); // HTML 태그들 포함
+            console.log(divEl.innerText); // HTML 태그들 미포함
+
+            // content값 get하는 방법
+            // set하는 방법
+
+            divEl.innerHTML = '<b>innerHTML로 속성값을 변경함</b>';
+            divEl.innerText = '<b>innerText로 속성값을 변경함</b>';
+
+            console.dir(divEl);
+
+            divEl.style = 'color : red; font-size : 20px';
+        };
+
+        // 실습
+        // div요소 클릭하면 '안녕'이라는 문구를 알림창으로 띄워주기!
+
+        function create() {
+            //var divEl2 = document.getElementById('area1');
+            window.alert("안녕");
+        };
+
+        var divEl = document.getElementById('area1');
+        divEl.onclick = function () {
+            alert("안녕");
+        }
+    </script>
+
+    <h2>2. 데이터를 입력받는 기본 구문(변수에 대입 가능)</h2>
+    <p> <!-- window는 생략가능-->
+        1) 변수 = window.confirm('질문내용'); <br>
+        2) 변수 = window.prompt('질문내용'); <br>
+        3) 변수 = 선택한요소.속성(id, clssName, innerHTML, innerText, ....); <br>
+        4) 변수 = 선택한 input요소.value;
+    </p>
+
+    <h3>1) window.confirm('질문내용'); </h3>
+    <p>
+        confirm 호출 시 "질문 내용"과 "확인/취소"버튼이 존재하는 알림창 발생 <br>
+        확인 버튼 클릭시 true값, 취소 버튼 클릭 시 false값 반환
+    </p>
+
+    <button onclick="testConfirm();">클릭</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function testConfirm() {
+
+            var result = window.confirm('졸리면 확인, 아니면 취소를 누르세요.');
+
+            console.log(result); // 확인 / 취소 결과값 확인
+
+            var divEl = document.getElementById('area2'); // 요소객체 변수에 할당
+
+            //divEl.innerHTML = '<h2>문구테스트</h2>';
+
+            if (result) {
+                divEl.innerHTML = '<h2>졸려요 ㅠㅠ </h2>';
+            }
+            else {
+                divEl.innerHTML = '<h2>안졸린데요??</h2>';
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h3>2) window.prompt('질문내용'); </h3>
+
+    <p>
+        prompt는 호출 시 '질문내용'과 입력할 수 있는 '텍스트 상자'와 '확인/취소' 버튼이 보여지는 알림창 발생 <br>
+        - 확인 버튼 클릭 시 텍스트 상자에 입력한 값을 반환 <br>
+        - 취소 버튼 클릭 시 null값을 반환
+    </p>
+
+    <button onclick="testPrompt();">클릭</button>
+    <div id="area3" class="area"></div>
+
+    <script>
+        // 자바스크립트 영역
+        function testPrompt() {
+
+            var name = window.prompt('너 이름이 뭐니 ?');
+            var lunchMenu = window.prompt('점심메뉴가 뭐였니??');
+
+            console.log(name);
+            console.log(lunchMenu);
+
+            // 점심으로 XX을 드신 XXX님의 방문을 환영합니다 ^^ <- 요 형태로 div요소 내부에! 출력!
+
+            var divEl2 = document.getElementById('area3');
+
+            divEl2.innerText = '점심으로 ' + lunchMenu + '을(를) 드신 ' + name + '님의 방문을 환영합니다 ^^';
+
+        }
+    </script>
+
+    <button onclick="testPrompt2()">숫자입력</button>
+    <ul id="ul1">
+
+    </ul>
+
+    <script>
+        function testPrompt2() {
+
+            var num = window.prompt('숫자만 입력해주세요 ㅠㅠㅠ 제발...');
+
+            var ulEl = document.getElementById('ul1');
+
+            /*
+                자바였다면??
+                for(int i = 0; i < num; i++){
+                    ulEl.innerHTML += '<li>자식</li>';
+                }
+
+            */
+            var str = '';
+            for (var i = 0; i < num; i++) {
+                str += '<li>자식</li>'
+            }
+            ulEl.innerHTML = str; /* 사용자가 입력한 값 만큼의 li요소 */
+        }
+    </script>
+
+    <h4>4) 선택한 input요소.value; *****************************</h4>
+
+    아이디 : <input type="text" name="userId" id="userId"><br>
+    비밀번호 : <input type="password" name="userPwd" id="userPwd"><br>
+
+    <button onclick="testInput();">클릭</button>
+
+    <script>
+        function testInput(){
+            var inputId = document.getElementById('userId');
+            var inputPwd = document.getElementById('userPwd');
+
+            //console.dir(inputId);
+
+            console.log('아이디 : ' + inputId.value);
+            console.log('비밀번호 : ' + inputPwd.value);
+
+            inputId.value = '아이디 사용불가';
+            
+        }
+    </script>
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+</body>
+
+</html>
