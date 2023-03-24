@@ -170,6 +170,46 @@
 
             // area3에 출력
             area3.innerHTML += 'area1 : ' + date1 + '<br>';
+
+            // 2023년 6월 28일로 셋팅
+            let date2 = new Date(2023, 6 -1, 28);
+            area3.innerHTML += 'date2(종강일) : ' + date2 + '<br>';
+            // 월의 경우에는 내부적으로 +1되기 때문에 해당 월(숫자) -1을 해줘야한다.
+            // 시, 분, 초를 지정안할 경우 0으로 셋팅
+
+            // 2023년 6월 28일 시작
+            let date3 = new Date(2023, 6-1, 28, 15, 50, 0);
+            area3.innerHTML += 'date3(종강일) : ' + date3 + '<br>';
+
+            // ms까지 세팅하려면??
+            // 1000ms == 1초
+            var date4 = new Date(203, 6-1, 28, 15, 50, 0, 5000);
+            area3.innerHTML += 'date4(종강일)' + date4 + '<br>';
+
+            // 종강일까지 디데이 구하기
+            var now = new Date();
+            var end = new Date(2023, 6-1, 28);
+            area3.innerHTML += '종강일 디데이 : ' + (end - now) + '<br>'; // ms단위로 나옴
+
+            // 1s == 1000ms
+            // 1m == 60000ms
+            // 1h == 3600000ms
+            // 1d == 86400000ms
+            var dday = (end - now) / (24 * 60 * 60 * 1000);
+            alert('종강까지 ' + Math.ceil(dday) + '일 남았습니다.');
+
+            // 년도만 알아내고 싶다면 : getFullYear()
+            area3.innerHTML += '년도 : ' + date1.getFullYear() + '<br>';
+            // 월만 알아내고 싶다면 : getMonth() + 1;
+            area3.innerHTML += '월 : ' + (date1.getMonth() + 1) + '<br>';
+            // 일만 알아내고 싶다면 : getDate();
+            area3.innerHTML += '일 : ' + date1.getDate() + '<br>';
+            // 요일만 알아내고 싶다면 : getDay(); 0 == 일요일, 1 == 월요일, 2 == 화요일..
+            area3.innerHTML += '요일 : ' + date1.getDay() + '<br>';
+
+            //추가적으로
+            // 시 : getHours(), 분 : getMinutes(), 초 : getSeconds() 호출
+
         }
     </script>
     
