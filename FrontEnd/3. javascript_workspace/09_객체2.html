@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체는 사실 별로 쉽진않음....</title>
+    <style>
+        .area{
+            background-color : lemonchiffon;
+            border : 1px solid blanchedalmond;
+            height : 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>객체2</h1>
+
+    <h3>* 객체배열을 이용한 다량의 데이터 관리</h3>
+
+    <!--
+        객체들을 배열에 넣을것!
+        객체 : HashMap..같은..
+        배열 : ArrayList..같은..
+    -->
+
+    <button onclick="test1();">확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function test1(){
+
+            // 학생 객체 만들기
+            var student0 = {name : '이승철', java : 50, oracle : 40, html : 100, css : 20};
+            var student1 = {name : '제임스고슬링', java : 100, oracle : 100, html : 20, css : 10};
+            var student2 = {name : '박한솔', java : 100, oracle : 100, html : 50, css : 50};
+            var student3 = {name : '홍길동', java : 20, oracle : 20, html : 80, css : 80};
+
+            // 학생 객체를 담을 배열만들기(빈배열)
+            let students = [];
+
+            // 배열에 객체 추가하기
+            // 자바스크립트에서 배열에 요소를 추가할 때 index, push, unshift
+            // 순차적으로 넣어서 관리하고자한다면 push()가 더 적합
+            
+            students.push(student0); // 0번
+            students.push(student1); // 1번
+            students.push(student2); // 2번
+            students.push(student3); // 3번
+
+            console.log(students);
+            console.log(students[1]['java']);
+
+            // javascript : 100점
+            // 합계를 구해주는 기능
+            // 평균을 구해주는 기능
+
+            for(let i in students){
+                students[i].javascript = 100;
+                students[i].getSum = function(){
+                    return this.java + this.oracle + this.html + this.css + this.javascript;
+                };
+                students[i].getAvg = function(){
+                    return this.getSum() / 5;
+                }
+            }
+
+            console.log(students);
+
+            // 전체 학생들의 이름 , 총점, 평균 출력하기 div요소에 시작!
+
+            var area1 = document.getElementById('area1');
+
+            for(let i in students){
+                with(students[i]){
+                    area1.innerHTML += ' 이름 : ' + name + ' '
+                                    + ' 총합 : ' + getSum() + ' '
+                                    + ' 평균 : ' + getAvg() + '<br>';
+                }
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 생성자 함수</h3>
+    <p>
+        new 키워드를 사용해서 객체를 생성할 수 있는 함수를 의미 <br>
+        (함수명을 만들 때 첫글자를 대문자로 만듬)
+    </p>
+
+    <button onclick="test2();">실행확인</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function test2(){
+
+            var student0 = new Student('홍길동', 30, 40, 20, 30, 40);
+            var student1 = new Student('제임스고슬링', 100, 100, 100, 100, 100);
+            var student2 = new Student('어쩌고', 20, 30, 40, 50, 60);
+
+            // 배열에 담기
+            let students = [student0, student1, student2];
+
+            // 반복문 이용해서 출력
+            for(let i in students){
+                document.getElementById('area2').innerHTML += students[i];
+                document.getElementById('area2').innerHTML += students[i].getSum() + '<br>';
+            }
+
+            // 생성자 함수 : 보편적으로 대문자로 시작 ex) 빌트인 생성자함수는 Array, Number 등
+            // 자바에서는 생성자 함수의 목적이 객체를 힙 메모리에 올리기 위함
+            // 매개변수를 가진 생성자의 경우 객체 생성과 동시에 필드에 초기화하기 위함 <- 자바스크립트 생성자 함수 목적과 동일
+            function Student(name, java, oracle, html, css, javascript){
+                
+                /* new가 붙으면 암묵적 진행하는 코드1
+                this = {
+                    name : '홍길동',
+                    java : 30,
+                    oracle : 40,
+                    html : 20,
+                    css : 30,
+                    javascript : 40
+                }; 
+                */
+                
+                // Property 초기화
+                this.name = name; // this의 3번째 용도 : 속성을 추가하는 형식인데 객체가 없는데 속성을 추가한다??
+                this.java = java;
+                this.oracle = oracle;
+                this.html = html;
+                this.css = css;
+                this.javascript = javascript;
+
+                this.getSum = function(){
+                    return this.java + this.oracle + this.html + this.css + this.javascript;
+                }
+
+                this.getAvg = function(){
+                    return this.getSum() / 5;
+                }
+
+                
+                this.toString = function(){
+                    return '이름 : ' + this.name + ', 총점 : ' + this.getSum() + ', 평균 : ' + this.getAvg() + '<br>';
+                }
+                /* new가 붙으면 암묵적 진행하는 코드2
+                return this;
+                */
+            };
+
+            console.log(student0);
+
+        }
+    </script>
+
+    <hr>
+
+    <h3>* Date 객체</h3>
+
+    <button onclick="test3();">실행확인</button>
+    <div id="area3" class="area"></div>
+
+    <script>
+        function test3(){
+
+            let area3 = document.getElementById('area3');
+
+            // Date 객체 생성 => new Date();
+            let date1 = new Date(); // 현재 날짜 및 시간
+
+            // area3에 출력
+            area3.innerHTML += 'area1 : ' + date1 + '<br>';
+        }
+    </script>
+    
+</body>
+</html>

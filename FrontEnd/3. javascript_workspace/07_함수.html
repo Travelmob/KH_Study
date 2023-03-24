@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>나느가 함수여</title>
+
+    <style>
+        .area{
+            width : 500px;
+            height : 100px;
+            background-color : paleturquoise;
+            border : 1px solid lightgreen;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>함수(function)</h1>
+
+    <!--
+        * 함수의 종류
+        1. 선언적 함수 : 이름이 있는 함수, 이름을 가지고 호출해서 실행함
+        
+        2. 익명 함수 : 이름이 없는 함수, 함수식별자 대신 변수에 함수를 대입하여 함수코드를 저장하는 구현 방식
+        
+    -->
+
+    <h3 onclick="test1();">선언적 함수</h3>
+    <pre>
+        [ 표현법 ]
+        function 함수이름(매개변수, 매개변수, ...){
+
+            해당 함수를 호출할 경우 실행할 코드;
+
+            retrun 결과값;
+
+        }
+
+        - 매개변수가 없는 경우 생략 가능
+        - 반환할 결과값이 없는 경우 return 결과값; 생략 가능
+    </pre>
+
+    <div id="area1" class="area"></div>
+    <button onclick="test1();">나 불렀쓰</button>
+
+    <script>
+        function test1(){
+            document.getElementById('area1').innerHTML += 'test1() 호출됨! <br>';
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 익명함수</h3>
+    <pre>
+        [ 표현법 ]
+        변수/속성 = function(){
+
+            소스코드가 어쩌고저쩌고;
+        }
+        => 특정 변수나 속성에 대입하는 함수가 필요할 경우 사용됨
+        (주로 이벤트 핸들러 작성 시 사용)
+    </pre>
+
+    <button id="btn">실행확인</button>
+    <div id="area2" class="area"></div>
+    
+    <script>
+
+        var btn = document.getElementById('btn'); //버튼요소객체
+
+        btn.onclick = function(){ // 이벤트속성에 대입하는 function == 이벤트 핸들러
+            document.getElementById('area2').innerHTML += '이벤트 핸들러를 통해 실행됨! <br>'
+        }
+    </script>
+
+    <hr>
+
+    <h2>함수의 매개변수</h2>
+
+    <br>
+    <button onclick="test3('프로개발자';)">실행확인</button>
+    <button onclick="test3(10;)">실행확인</button>
+    <button onclick="test3([1,2,3]);">실행확인</button>
+    <button onclick="test3(true);">실행확인</button>
+    <button onclick="test3(prompt('이름을입력하세요'));">실행확인</button> <!-- 함수호출의 리턴값이 넘어감 -->
+    <!-- 자료형에 상관없이 인자값과 매개변수의 개수가 동일하다면 실행하는데 문제가 없음! -->
+    
+    <button onclick="test3()"">실행확인</button> <!-- 함수호출의 리턴값이 넘어감 -->
+    <!-- 정의해둔 매개변수 개수보다 적게 전달하는 것 가능!!(실행에 문제 없음) / 단, undefined로 뜸 -->
+
+    <button onclick="test3('하나', '둘');">실행확인</button>
+    <!-- 정의해둔 매개변수 개수보다 많이 전달하는 것 가능!!(실행에 문제 없음) / 단 초과된 전달값은 사라짐 -->
+
+
+
+    <div id="area3" class="area"></div>
+
+    <script>
+        function test3(value){ // 매개변수 작성 시 자료형 지정 X, var, let X => 변수명만 적음
+            document.getElementById('area3').innerHTML = value;
+            //document.getElementById('area3').innerHTML += 10..toString();
+            //document.getElementById('area3').innerHTML = (10).toString();
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 매개변수 관련 배열</h3>
+    <p>
+        함수 호출 시 전달하는 값은 내부적으로 arguments라는 배열에 담김 <br>
+        * arguments : 모든 함수마다 내부적으로 하나씩 존재하는 배열객체
+    </p>
+
+    <button onclick="test4(54, 342, 34, 33, 12, 64, 6, 215, 41);">실행확인</button>
+    <div id="area4" class="area"></div>
+
+    <script>
+        function test4(){
+            
+            console.log(arguments);
+            console.log(arguments[0]);
+
+            // argument 배열의 총합과 평균을 구해서
+            // id속성값이 area4인 div요소의 innerHTML속성에 대입해주세요!
+
+            var sum= 0;
+            var average = 0;
+
+            for(let i in arguments){
+                sum += Number(arguments[i]);
+            }
+
+            let area4 = document.getElementById('area4');
+
+            average = sum/arguments.length;
+
+            area4.innerHTML += '총합은 ' + sum + '<br>';
+            area4.innerHTML += '평균은 ' + average + '<br>';
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 매개변수 있는 함수에 this키워드 전달하기*************************
+        ****************************************************************
+        ****************************************************************
+    </h3>
+
+    <button onclick="test5(this);">버튼!</button> <!-- this : 해당 요소객체 버튼 자체 -->
+    <button id="abc" onclick="test5(this.innerHTML)">버튼2!</button>
+    <button id="btn33" onclick="test5(this.id);">버튼3!</button>
+    <input type="button" value="버튼4!" onclick="test5(this.value);">
+
+    <script>
+        function test5(a){
+            console.log(a);
+            var b = document.getElementById("abc");
+        }
+
+    </script>
+
+    <h2>함수의 리턴</h2>
+
+    <h3>* 일반적인 값을 반환하는 경우</h3>
+
+    <button onclick="test6();">실행확인</button>
+    <div id="area6" class="area"></div>
+
+    <script>
+        function test6(){
+            document.getElementById('area6').innerHTML = '랜덤값 : ' + rand();
+        }
+
+        // 1 ~ 100 사이의 랜덤한 난수를 생성해서 "반환"해주는 함수
+        function rand(){
+            // Math.random() => 0.0 ~ 0.99999999999
+            // Math.random() * 100 => 0.0 ~ 99.9999999999
+            // Math.random() * 100 + 1 => 1.0 ~ 100.999999999
+            // parseInt(Math.random() * 100 + 1) => 1 ~ 100
+            return parseInt(Math.random() * 100 + 1);
+        }
+    </script>
+
+    <h3>* 익명함수를 리턴하는 경우</h3>
+
+    이름 : <input type="text" id="userName">
+    <button onclick="test7()();">실행확인</button>
+
+    <script>
+        function test7(){
+
+        var name = document.getElementById('userName').value;
+
+        console.log(name);
+
+        return function(){
+            alert(name + '님 환영합니다 ~ ');
+        }
+
+        }
+    </script>
+
+    <br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
