@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>window 객체</title>
+
+    <style>
+        body{
+            background-color: lightgreen;
+            color : rgb(rgb(230,144,241), rgb(238,253,238), rgb(242,242,255))
+        }
+        .area{
+            width : 300px;
+            height : 100px;
+            background : bisque;
+            border : 1px solid forestgreen;
+        }
+        .small{
+            height : 150px;
+        }
+        .big{
+            height : 300px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>window 객체</h1>
+
+    <p>
+        window객체는 자바스크립트의 최상위 객체 크게 BOM과 DOM으로 나뉨 <br><br>
+
+        - BOM(Browser Object Model) : 브라우저 창과 관련된 객체들 <br>
+        - DOM(Document Object Model) : HTML문서의 요소(태그) 관련된 객체들
+    </p>
+
+    <hr>
+
+    <h3>window 객체에서 제공하는 메소드</h3>
+
+    <!--
+        window.alert();
+        window.console.log();
+        window.confirm();
+        window.prompt();
+    -->
+
+    <h3>- window.open()</h3>
+
+    <button onclick="test1();">네이버</button>
+
+    <script>
+        function test1(){
+
+            //window.open();
+
+            //window.open('http://www.naver.com', 'ㅋㅋㅋㅋㅋㅋ');
+
+            // window.open('url', '창이름', '창의특성');
+            // 창이름 : 창이름이 동일한게 이미 열려있을 경우 새롭게 열리지 않고 이미 열린 window에서 새로고침
+            //      (크롬은 새로고침 / IE 새탭이 뜸)
+            // 창의 특성 : 새로열릴 창의 너비, 높이, 툴바, 스크롤바, 상태표시줄 등등..(브라우저마다 다름)
+
+            /*
+                * 창의 특성
+                => px
+                width : 창의 가로길이
+                height : 창의 세로길이
+
+                => yes / no
+                resizable : 창의 크기 조절 여부
+                location : 주소창을 보일것인지 안보일것인지
+                menubar : 메뉴바를 보일것인지 안보일것인지
+                scrollbar : 스크롤바를 보일것인지 안보일것인지
+                status : 상태 표시줄
+                toolbar : 도구모음
+
+                여러속성을 한번에 지정하고 싶다면 ,로 나열한다
+                '속성=속성값, 속성=속성값'
+            */
+
+            //window.open('http://www.naver.com', 'aaa', 'width=500, height=500, resizable = no, location = no, menubar = no, scrollbar = no, toolbar = no');
+
+        }
+
+    </script>
+
+    <hr>
+
+    <h4>- window.setTimeout(함수, ms)</h4>
+
+    <button onclick="test2();">실행확인</button>
+
+    <script>
+        function test2(){
+
+            // 3초 뒤에 alert 뜨게끔
+
+            /*
+            window.setTimeout(function(){
+                alert('나는 3초를 기다려야 뜸!');
+            }, 3000);
+            */arguments
+            
+            var newWindow = window.open(); // 새로 열린창의 window객체
+            newWindow.alert('버튼을 누르면 3초뒤에 페이지가 닫힙니다');
+
+            window.setTimeout(function(){
+                newWindow.close();
+            }, 3000)
+
+            // setTimeout : 내가 셋팅한 일정 시간 후에 "단 한번"만 함수를 실행
+        }
+    </script>
+
+    <hr>
+
+    <h4>- window.setInterval(함수, ms)</h4>
+
+    <button onclick="test3();">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function test3(){
+
+            var area1 = document.getElementById('area1');
+
+            var count = 1;
+            window.setInterval(function(){
+                // area1.innerHTML += 'ㅋ';
+                // area1.innerHTML = count++;
+
+                //let date1 = new Date(2023-);
+                let date1 = new Date();
+
+                area1.innerHTML = date1.getFullYear() + '년 ';
+                area1.innerHTML += (date1.getMonth() + 1) + '월 ';
+                area1.innerHTML += date1.getDate() + '일 ';
+                area1.innerHTML += date1.getHours() + ':';
+                area1.innerHTML += date1.getMinutes() + ':';
+                area1.innerHTML += date1.getSeconds() + '<br>';
+                
+
+
+                // 시계만들기
+                var date = new Date();
+
+                hour = date.getHours();
+                min = date.getMinutes();
+                sec = date.getSeconds();
+                
+
+                var mhour, mmin, msec, ampm;
+
+                if(hour < 12){
+                    mhour = hour;  
+                }
+                else{
+                    mhour =  (hour - 12);
+                };
+                
+                if(min < 10){
+                    mmin =  "0" + min;  
+                }
+                else{
+                    mmin = min;  
+                };
+
+                if(sec < 10){
+                    msec = "0" + sec;  
+                }
+                else{
+                    msec = sec;  
+                };
+
+                if(hour < 12){
+                    ampm = "AM";
+                }
+                else{
+                    ampm =  "PM";
+                };
+
+                area1.innerHTML += mhour + ':' + mmin + ':' + msec + ' ' + ampm + '<br>';
+
+
+            }, 1000);
+        }
+    </script>
+
+    <hr>
+
+    <h1>* BOM(Browser Object Model)</h1>
+
+    <p>
+        location객체, screen객체, navigator객체
+    </p>
+
+    <button onclick="console.log(location);">실행확인</button>
+    <br><br>
+
+    <h3>location객체</h3>
+    <p>
+        브라우저의 주소창 관련된 객체 => url(href속성)
+    </p>
+
+    <a href="http://www.naver.com">네이버로 이동</a>
+    <!--a태그는 애초에 클릭 시 요청할 url을 작성할 수 있는 hred속성을 제공함-->
+
+    <button onclick="location.href='http://www.naver.com'">나는 무슨일이 일어날까??</button>
+    <!--굳이 a태그를 사용하지 않더라도 url요청을 보낼 수 있음-->
+    <br>
+
+    <label onclick="location.href='http://www.naver.com'">네이버로이동</label>
+    <br><br>
+
+    <!-- location객체 assign, replace, reload같은 메소드가 존재 -->
+
+    <!-- assign, replace 둘 다 페이지 이동 -->
+    <button onclick="location.assign('http://www.google.com')">구글로 이동</button>   <!-- 대입 : 뒤로가기 가능 -->
+    <button onclick="location.replace('http://www.google.com')">구글로 이동</button>  <!-- 치환 : 뒤로가기 불가 -->
+    <!-- replace는 뒤로가기를 사용할 수 없음 -->
+
+    <!-- reload : 새로고침 -->
+    <button onclick="location.reload();">새로고침</button>
+
+    <hr>
+
+    <h3>screen객체</h3>
+    <button onclick="console.log(screen);">screen객체 확인</button> <!-- 사용자가 보는 화면에 관한 정보-->
+
+    <h3>navigator객체</h3>
+    <button onclick="console.log(navigator);">navigator객체 확인</button> <!-- 브라우저에 대한 정보 -->
+    
+    <hr>
+
+    <h1>* DOM(Document Object Model)</h1>
+
+    <p>
+        - HTML문서가 포함하고 있는 각각의 요소들을 Node(노드)라고 한다. <br>
+        - 요소 노드(Element Node) : 태그 자체만을 의미 == Element <br>
+        - 텍스트 노드(Text Node) : 태그 내에 기록되는 내용 == Content <br>
+
+        텍스트 노드가 존재하지 않는 요소(시작태그만 있는 요소들) : input, img, ..<br>
+        텍스트 노드가 존재하는 요소(시작태그와 종료태그가 한 쌍인 요소) : div, button, a, h1, p....
+    </p>
+
+    <button onclick="test4();">실행확인</button>
+
+    <div id="area3" class="small">
+
+    </div>
+
+    <script>
+        function test4(){
+
+            // 동적으로 요소만들기(처음 문서로딩시에는 존재하지 않다가 나중에 생겨나는 요소)
+            /*
+                <h3>
+                    안녕하세요
+                </h3>
+            */
+
+            // 1. "문자열"로 만드는 방법
+            // document.getElementById('area3').innerHTML = '<h3>안녕하세요</h3>;';
+
+            // 2. document에서 제공하는 메소드를 통해 "요소객체"로 만드는 방법
+            // 2_1) elementNode객체 생성 : document.createElement('태그명');
+            let elementNode = document.createElement('h2');
+            console.log(elementNode);
+            console.log(typeof(elementNode));
+            // 2_2) textNode 객체 생성 : document.createTextNode('문구');
+            var textNode = document.createTextNode('안녕하세요');
+            console.log(textNode);
+
+            // 3) 두 개의 노드를 연결(ElementNode의 자식으로 TextNode를 추가)
+            // 1)의 자식으로 2)를 추가
+            // 요소노드.appendChild(텍스트노드);
+            elementNode.appendChild(textNode); // <h3>안녕하세요</h3>
+
+            console.log(elementNode);
+
+            // innerHTML은 반드시 문자열형태로 넣어야함
+            document.getElementById('area3').innerHTML = elementNode;
+
+            // div요소의 자식으로 elementNode를 추가
+            document.getElementById('area3').appendChild(elementNode);
+
+        }
+    </script>
+
+    <hr>
+
+    <h4>- 텍스트노드가 존재하지 않는 노드 생성(시작태그만 있는 친구들)</h4>
+
+    <button onclick="test5();">실행확인</button>
+    <div id="area4" class="big">
+
+    </div>
+
+    <script>
+        function test5(){
+
+            var img = document.createElement('img'); // <img> 태그 요소객체
+
+            // <img src="이미지경로" width="222" height="199" alt="~~"> => 속성들
+            // 객체의 속성에 접근하는 방법 : 객체명.속성명 또는 객체명['속성명']
+
+            // 속성추가
+            img.src = 'https://post-phinf.pstatic.net/MjAyMjA0MDFfMjM0/MDAxNjQ4ODA4MjE5NjYy.Z6I4_cbWtQ6w7ZzyLWKSubrOcTuBi-ZFvWhfpByOGGwg.lIc0Vg0ZOdOiZht3Brd_qn1ox2_E5n0JqrbAc-shFXIg.PNG/%EC%82%AC%EB%9E%8C_%EA%B7%B8%EB%A6%BC_8.png?type=w1200';
+
+            img.width = '400';
+            img.height = '200';
+
+            console.log(img);
+
+            document.getElementById('area4').appendChild(img);
+
+        };
+    </script>
+
+</body>
+</html>
