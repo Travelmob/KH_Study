@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
-    <style>
-        .pinkStyle{
-            background-color : pink;
-        }
-    </style>
-
-
-</head>
-<body>
-
-    <h1>추가적인선택자</h1>
+<h1>추가적인선택자</h1>
 
     <h3>* 자식선택자(>)와 후손선택자( )</h3>
     
@@ -37,16 +20,13 @@
 
     <script>
         $(function(){
-            $('div>h3').css('color', 'blue');
-            $('div h3').css('background', 'violet');
-
-            $('li>h3').css('color', 'white');
-            $('ul h3').css('background', 'lightgreen');
-            $('div>ul>li>h3').css('font-size', '15px');
-
-            $('ul>.ch').css('background', 'yellow');
-
-            $('li.ch').css('color', 'yellowgreen');
+            $('div>h3').css('color', 'blue');           //div의 자식요소 h3
+            $('div h3').css('background', 'violet');    //div의 후손요소 h3
+            $('li>h3').css('color', 'white');           //li의 자식요소 h3
+            $('ul h3').css('background', 'lightgreen'); //ul의 후손요소 h3
+            $('div>ul>li>h3').css('font-size', '15px'); //div의 자식요소 ul의 자식요소 li의 자식요소 h3
+            $('ul>.ch').css('background', 'yellow');    //ul의 자식요소 클래스 ch
+            $('li.ch').css('color', 'yellowgreen');     //li의 동위요소 클래스 ch
         });
     </script>
 
@@ -195,6 +175,7 @@
                 $(this).removeClass('pinkStyle');
             });
 
+            console.log($(':submit').hover);
         });
     </script>
 
@@ -300,5 +281,3 @@
             $('#wrap>:disabled').css('background', 'greenyellow');
         })
     </script>
-</body>
-</html>

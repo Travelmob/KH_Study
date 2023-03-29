@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>영역관련메소드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>content 영역관련 메소드</h1>
+
+    <h3>******************** html('문구') : innerHTML 속성과 관련된 메소드</h3>
+    <p>
+        선택된 요소의 content영역(여는태그와 닫는태그 사이)을 리턴해주거나
+        또는 변경해주는 메소드 <br>
+
+        - $('선택자').html() : 선택된 요소의 content영역의 값을 반환해줌 <br>
+        - $('선택자').html('문구') : 선택된 요소의 content영역의 값을 해당 문구로 바꿔줌 <br>
+        => 이 때 HTML태그를 인식 O
+    </p>
+
+    <h1 id="test1">
+        <a id = "al">네이버로</a>
+    </h1>
+
+    <h1 id="test2" style="border : 1px solid black">
+        
+    </h1>
+
+    <script>
+        $(function(){
+            
+            /*
+            // 자바스크립트 방식
+            var tmp = document.getElementById('test1').innerHTML;
+            console.log(tmp);
+
+            // href속성 추가(속성값으로는 http://www.naver.com)
+
+            var arr = document.getElementsByTagName('a').href;
+            console.log(arr);
+            arr[0].href = 'http://www.naver.com';
+
+            document.getElementById('al').innerHTML = 'http://www.naver.com'
+            */
+            
+            // 제이쿼리 방식
+            let tmp = $('#test1').html();
+            console.log(tmp);
+
+            $('#test2').html(tmp);
+
+            // href 속성 추가
+            $('#test2').children().attr('href', 'http://www.naver.com');
+        });
+    </script>
+
+    <hr>
+
+    <h3>* text('문구') : innerText속성과 관련된 메소드</h3>
+
+    <p>
+        선택된 요소의 content영역의 텍스트만 리턴해주거나 변경해주는 메소드 <br>
+
+        - $('선택자').text() : 선택된 요소의 content영역을 반환해줌 <br>
+        - $('선택자').text('문구') : 선택된 요소의 content 내용을 문구로 변경해줌 <br>
+        => 이 때, HTML 태그를 인식 X
+    </p>
+
+    <h1 id="test3">
+        <a>구글로</a>
+    </h1>
+    <h1 id="test4">
+    
+    </h1>
+
+    <script>
+        $(function(){
+            // 자바스크립트
+            // document.getElementById('test3').innerHTML;
+
+            // jQuery
+            var tmp2 = $('#test3').text();
+            console.log(tmp2)
+        });
+
+
+    </script>
+    
+</body>
+</html>

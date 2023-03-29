@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>탐색메소드 - 자식</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        .wrap, .wrap *{
+            display : block;
+            border : 1px solid rgb(84, 84, 186);
+            margin : 15px;
+            padding : 5px;
+            color:rgb(154, 64, 64);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>탐색(순회)메소드 (Travering)</h1>
+
+    <h3>
+        * Desendents(자식) 메소드 : 기준이 되는 요소의 하위요소들을 선택할 수 있는 메소드
+    </h3>
+
+    <div class="wrap">div(조상-기준점)
+        <div>div
+            <ul>li
+                <li><span>span</span></li>
+            </ul>
+        </div>
+        <div>div
+            <p>
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+
+    <p>
+        <h4>- $('선택자').children()</h4>
+        선택된 요소를 기준으로 모든 자식(바로 하위) 요소들을 선택된
+        
+        <h4>- $('선택자').children('선택자')</h4>
+        선택된 요소를 기준으로 모든 자식요소들 중에서 제시한 값과 일치하는 요소들만 선택
+
+        <h4>- $('선택자').find('선택자')</h4>
+        선택된 요소를 기준으로 모든 후손 요소들 중에서 제시한 값과 일치하는 요소들만 선택
+    </p>
+
+    <script>
+        $(function(){
+
+            // 객체형태로 css부여
+            // 앞으로 부여할 스타일 객체
+            let style1 = {
+                color : 'red',
+                border : '2px solid red'
+            };
+
+            let style2 = {
+                color : 'blue',
+                border : '2px solid blue'
+            }
+
+            let style3 = {
+                color : 'green',
+                border : '2px solid green'
+            }
+
+            let style4 = {
+                color : 'yellow',
+                border : '2px solid yellow'
+            }
+
+            let style5 = {
+                color : 'yellowgreen',
+                border : '2px solid yellowgreen'
+            }
+
+            // childeren()
+            $('.wrap').children().css(style1);
+            $('.wrap').children().children().css(style5); // 자식의 자식이라는 뜻
+
+            // children('선택자')
+            $('.wrap').children().children("ul").css(style3);
+
+            // find('선택자')
+            $('.wrap').find('li').css(style4);
+            $('.wrap').find('span').css(style2);
+
+        })
+    </script>
+    
+</body>
+</html>

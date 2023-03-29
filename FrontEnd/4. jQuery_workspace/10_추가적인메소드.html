@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        .hightlight-0{
+            background-color : red;
+        }
+        .hightlight-1{
+            background-color : orangered;
+        }
+        .hightlight-2{
+            background-color : orange;
+        }
+        .hightlight-3{
+            background-color : yellow;
+        }
+        .hightlight-4{
+            background-color : yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>추가적인 메소드</h1>
+
+    <h3>* each 메소드</h3>
+
+    <p>
+        배열의 모든 인덱스에 순차적으로 접근하고자 할 때 <br>
+        객체가 가지고 있는 모든 속성에 순차적으로 접근하고자 할 때 <br>
+        사용할 수 있는 for in문과 유사하게 수행되는 메소드
+    </p>
+
+    <pre>
+        [표현법]
+        1)$.each(객체/배열, funtion(매개변수1, 매개변수2){
+            순차적으로 접근해서 수행할 내용;
+        });
+
+        2)
+        배열.each(function(매개변수1, 매개변수2)){
+            순차적으로 접근해서 수행할 내용;
+        });
+
+        ==> 매개변수1, 매개변수2 생략 가능
+        ==> 순차적으로 객체/배열의 속성이나 인덱스에 접근할때마다 function()수행
+
+        -----------------------------------------------------------------
+
+        case 1) 객체를 제시한 경우
+        매개변수 1 : 순차적으로 접근한 객체의 속성명(Property)
+        매개변수 2 : 해당 속성 값(Value)
+
+        case 2) 배열을 제시한 경우
+        매개변수 1 : 순차적으로 접근한 배열의 인덱스(index)
+        매개변수 2 : 해당 속성 값(Value)
+    </pre>
+
+    <div id="area1">
+
+    </div>
+
+    <script>
+        $(function(){
+        /*
+            
+            // 배열을 제시하는 경우
+            var arr = ['이', '승', '철', '짱'];
+
+            // 일반적인 for문
+            // for(var i = 0; i < arr.length; i++){}
+
+            // for in 문
+            for(var index in arr){
+                console.log('인덱스 : ' + index + ', 값' + arr[index]);
+            };
+        })
+
+        // each메소드 - 1번표현법
+        $.each(arr, function(index, value){
+            console.log('인덱스 : ' + index + ', 값 : ' + value);
+
+        });
+        
+        // each메소드 - 2번표현법  - 제이쿼리 메소드는 자바스크립트 배열에는 못써서 $()로 묶어줌
+        $(arr).each(function(index, value){
+            console.log('인덱스 : ' + index + ', 값 : ' + value);
+        });
+
+        // 객체를 제시했을 경우
+        var student = {
+            name : '홍길동',
+            age : 20,
+            address : '서울'
+        };
+
+        // 일반적인 for문 => 사용할 수 없음
+
+        // for in문
+        for(var keyword in student){
+            console.log('속성명 : ' + key + ', 값 : ' + studnet[keyword]);
+        }
+
+        // each  메소드 - 1번 표현법 => 객체의 경우 1번 표현법만 쓰인다.
+        $.each(student, function(key, value){
+            console.log(value);
+        })
+        
+
+        // 객체 배열을 제시할 경우
+        
+        let links = [{name : '네이버', link : 'http://www.naver.com'},
+                    {name : '구글', link : 'http://www.google.com'},
+                    {name : '다음', link : 'http://www.daum.net'}];
+
+        // <a href='link속성의값'>name의속성의값</a>
+
+        console.log(links[0].name);
+        console.log(links[0].link);
+
+        var el = '<a href="' + links[0].link + '">' + links[0].name + '</a><br>';
+
+        console.log(el);
+        
+        
+        let output = '';
+        $.each(links, function(index, item){
+            output += '<a href="' + item.link + '">' + item.name + '</a><br>';
+        });
+        $('#area1').html(output);
+        */
+
+        $('#btn').click(function(){
+            let output = '';
+            $.each(students, function(index, item){
+                output += '<tr><td>' + item.name + '</td><td>' + item.age + '</td><td>' +item.address + '</td></tr>';
+            });
+            $('tbody').html(output);
+        });
+    
+
+    });
+
+
+    //db로 부터 조회했다는 가정하에
+    const students = [{name : '홍길동', age : 20, address : '서울'},
+                        {name : '김길동', age : 34, address : '부산'},
+                        {name : '황길동', age : 15, address : '대전'}];
+    </script>
+
+    <br><br><br>
+
+    <hr>
+
+    <table border="1" id ="area1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+    <br><br><br>
+
+    <button id="btn">날 눌러줘~~</button>
+
+    <br><br><br>
+
+    <!-- 보편적으로 each메소드를 사용하는 경우 : 선택된 여러개의 요소에 순차적으로 접근해야 할 때 -->
+
+    <div id="wrap">
+        <h1>item-1</h1>
+        <h1>item-2</h1>
+        <h1>item-3</h1>
+        <h1>item-4</h1>
+        <h1>item-5</h1>
+    </div>
+
+    <script>
+        $(function(){
+            // [h1, h1, h1, h1, h1]
+            $('#wrap').children().each(function(index, value){
+                console.log(value);
+
+                // value.addClass('highlight-' + index);
+                // addClass() 는 제이쿼리 메소드
+                // value 요소 객체 == 자바스크립트 방식의 요소 객체
+
+                // 해결방법 1) $()로 감싸줌
+                // $(value).addClass('highlight-' +  index);
+
+                // 해결방법 2) 요소객체.속성명 =
+                // value.className = 'highlight-' + index;
+
+                // 해결방법 3) $(this) => 순차적으로 접근하는 해당 요소 객체
+                $(this).addClass('highlight-' + index);
+        });
+    });
+
+    </script>
+
+</body>
+</html>

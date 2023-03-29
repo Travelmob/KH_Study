@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>필터링관련 메소드</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>필터링 관련 선택자 및 메소드</h1>
+
+    <h3>* 필터 관련 선택자</h3>
+
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>MBTI</th>
+            <th>혈액형</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>ESFJ</td>
+            <td>O형</td>
+        </tr>
+        <tr>
+            <td>박성철</td>
+            <td>JDBC</td>
+            <td>B형</td>
+        </tr>
+        <tr>
+            <td>백동현</td>
+            <td>HTML</td>
+            <td>A형</td>
+        </tr>
+        <tr>
+            <td colspan="2">총인원</td>
+            <td>3명</td>
+        </tr>
+    </table>
+
+    <script>
+        $(function(){
+            // :first, :last, :even, :odd
+            $('tr:first').css('background', 'black').css('color','white'); // first 첫 번째 요소를 의미
+            $('tr:last').css({background : 'orangered', color : 'white'}); // last 마지막 요소를 의미
+            $('tr:even').css('background', 'gray'); // even 짝수번째 요소를 의미
+            $('tr:odd').css('background', 'yellowgreen') // odd 홀수번째 요소를 의미
+            // even과 odd는 0부터 시작
+        });
+    </script>
+
+    <h3>* 필터 관련 메소드</h3>
+    <p>
+        기준이 되는 요소 중에서 특정 요소만을 걸러서 선택해주는 메소드 <br>
+        first(), last(), filter(), not(),           *********** eq()
+    </p>
+
+    <h4 class="test">test-1</h4>
+    <h4 class="test">test-2</h4>
+    <h4 class="test">test-3</h4>
+    <h4 class="test">test-4</h4>
+    <h4>test-5</h4>
+    <h4 class="test">test-6</h4>
+
+    <script>
+        $(function(){
+            // .first() : 기준 중에서 가장 첫 번째를 선택
+            $('h4').first().css('font-size', '20px');
+            // .last() : 기준 중에서 가장 마지막을 선택
+            $('h4').last().css('font-size', '50px');
+            // .filter('선택자') : 기준 중에서 해당 선택자만 선택
+            $('h4').filter('.test').html('ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ');
+            // .not('선택자') : 기준 중에서 해당 선택자가 아닌것만 선택
+            $('h4').not('.test').css('color', 'skyblue');
+
+            // ******************* .eq(위치) : 0부터 시작, 몇 번째 요소 선택
+            $('h4').eq(0).text('<b>eq(0) 선택됨</b>');
+            // text() : 선택된 요소의 innerText와 관련된 기능을 수행
+
+
+        });
+    </script>
+    
+</body>
+</html>
