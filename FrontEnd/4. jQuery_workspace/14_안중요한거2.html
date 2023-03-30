@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <style>
+        div{
+            background-color : beige;
+            width : 450px;
+            height : 50px;
+            line-height : 50px;
+            border-radius : 10px;
+            border : 1px solid lightpink;
+            padding : 12px;
+            color : orchid;
+        }
+        
+        p{
+            border : 1px solid lightgoldenrodyellow;
+            width : 450px;
+            height : 100px;
+            border-radius : 10px;
+            padding : 12px; 
+            color :  mediumvioletred;
+            display : none;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <!--
+        slideDown(), slideUp()
+        선택된 요소가 점점 아래로 내려오면서 나타났다가
+        점점 뒤로 올라가면서 사라지게 하는 메소드
+
+        고객센터 FAQ
+    -->
+
+    <!--
+        질문은 div
+        답변은 p
+    -->
+
+    <div>Q[교환/반품] 상품을 교환/반품하고 싶어요.</div>
+    <p>A교환 및 반품은 미사용 상품에 한하여 가능하며, 마이쿠팡을 통해 직접하실 수 있습니다.</p>
+
+    <div>Q[스미싱] 알 수 없는 번호로 쿠팡 관련 문자를 받았어요.</div>
+    <p>A※ 피싱 및 스미싱 사기에 주의하시기 바랍니다. </p>
+
+    <div>Q[회원탈퇴] 회원 탈퇴는 어떻게 하나요?</div>
+    <p>A회원 탈퇴는 아래의 절차를 따라 하실 수 있습니다.</p>
+
+    <div>Q[상품파손] 배송 받은 상품이 파손되었어요.</div>
+    <p>A상품이 파손되어 배송된 경우 정해진 기간 내에 교환 및 반품이 가능합니다</p>
+    
+    <script>
+        $(function(){
+            $('div').click(function(){
+                //console.log($(this));
+                // $(this) : 현재 클릭 이벤트가 발생한 div요소
+                // $(this).next() : 현재 클릭이벤트가 발생한 div요소 바로 뒤에 있는 p요소
+
+                var $p = $(this).next();
+                // jQuery 방식으로 선택된 요소를 담을 때 변수명앞에 $을 붙일 수 있음
+
+                // css() => 속성명만 인자값으로 전달하게 되면 속성값을 반환해준다(getter/setter동시수행)
+
+                console.log($p.css('display'));
+
+                if($p.css('display') == 'none'){
+                    // 기존에 열려있던 p태그를 닫아주기!
+                    $p.siblings('p').slideUp(1000);
+                    // 디스플레이 속성값이 none일 때만 열어줌
+                    $p.slideDown(1000);
+                }
+                else{
+                    $p.slideUp(1000);
+                }
+
+
+            });
+        })
+
+    </script>
+</body>
+</html>

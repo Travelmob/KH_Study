@@ -8,11 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        tbody>tr:hover{
+            cursor : pointer;
+            background-color : lightgray;
+            color : white;
+        }
+    </style>
 </head>
 <body>
 
 
-    <!--------------------------------------------------------------------->
+    <!-------------------------------------------------------------------
 
     <button type="button" class="btn">Basic</button>
     <button type="button" class="btn btn-primary">Primary</button>
@@ -25,9 +33,93 @@
     <button type="button" class="btn btn-light">Light</button>
     <button type="button" class="btn btn-link">Link</button>    
 
-    <!-- 꼭 버튼 요소일 필요는 없음 -->
+    꼭 버튼 요소일 필요는 없음
 
     <button type="button" class="btn btn-outline-danger">Danger</button>
+    -->
+
+    <h2>게시판 리스트</h2>
+
+    <br>
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회</th>
+                <th>좋아요</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>구룡포 주상절리</td>
+                <td>임재하 53 양산시</td>
+                <td>2023.03.29</td>
+                <td>32</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>일출암</td>
+                <td>임재하 53 양산시</td>
+                <td>2023.03.29</td>
+                <td>27</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>호미곶 유채꽃밭</td>
+                <td>임재하 53 양산시</td>
+                <td>2023.03.29</td>
+                <td>43</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>오천오어사</td>
+                <td>임재하 53 양산시</td>
+                <td>2023.03.29</td>
+                <td>30</td>
+                <td>4</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <br><br>
+
+    선택된 게시글 정보 :
+    <label id="l1">제목</label>
+    <label id="l2">작성자</label>
+    <label id="l3">작성일</label>
+    <label id="l4">조회</label>
+    <label id="l5">좋아요</label>
+
+    <script>
+        $(function(){
+
+            $('tbody>tr').click(function(){
+
+                /*
+                console.log($(this).children().eq(0).text());
+                console.log($(this).children().eq(1).text());
+                console.log($(this).children().eq(2).text());
+                console.log($(this).children().eq(3).text());
+                console.log($(this).children().eq(4).text());
+
+                // 현재 선택된($(this))요소의 자식들 중에서
+                // 0 ~ 4번째 요소(<td>????</td>)의 innerText속성값을 가져오겠다.
+                $('#l1').text($(this).children().eq(0).text());
+                $('#l2').text($(this).children().eq(1).text());
+                $('#l3').text($(this).children().eq(2).text());
+                $('#l4').text($(this).children().eq(3).text());
+                $('#l5').text($(this).children().eq(4).text());
+                */
+                $(this).children().each(function(index, value){
+                    $('#1' + (index+1)).text($(value).text());
+                });
+            });
+        })
+    </script>
     
 </body>
 </html>
